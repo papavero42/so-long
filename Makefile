@@ -20,7 +20,7 @@ MINILIBX = mlx/libmlx.a
 LIBFT = libft/libft.a
 PRINTF = ft_printf/libftprintf.a
 
-SRC = 
+SRC = ft_render.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
