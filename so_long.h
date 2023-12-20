@@ -16,17 +16,13 @@
 # include "mlx/mlx.h"
 # include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
 
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
 # define IMG_WIDTH 32
 # define IMG_HEIGHT 32
 
-typedef struct s_map
-{
-    int gift;
-    char **map;
-}               t_map;
 
 typedef struct s_coord
 {
@@ -46,10 +42,12 @@ typedef struct s_img
 
 typedef struct s_data
 {
-    void *mlx;
-    void *window_ptr;
+    void    *mlx;
+    void    *window_ptr;
     t_img	img;
-    t_coord coord;
+    char    **map;
+    int     present;
 }                   t_data;
 
 #endif
+
