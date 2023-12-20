@@ -1,4 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_render.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pdi-pint <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/20 16:19:25 by pdi-pint          #+#    #+#             */
+/*   Updated: 2023/12/20 16:19:27 by pdi-pint         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
+
+char	*ft_freejoin(char *str1, char *str2)
+{
+	char	*temp;
+
+	temp = ft_strjoin(str1, str2);
+	free(str1);
+	return (temp);
+}
 
 static void	ft_select_image(t_data *window, char c, int x, int y)
 {
@@ -22,14 +43,10 @@ static void	ft_put_image(t_data *window)
 
 	i = 0;
 	j = 0;
-	while (window->map[j])
+	while (window->map[i][j])
 	{
-		while (window->map[j][i])	
-		{
-			printf("dio merda\n");
-			i++;
-			ft_select_image(window, window->map[j][i], i * IMG_WIDTH, j * IMG_HEIGHT);
-		}
+		while (window->map[i++][j++])
+			ft_select_image(window, window->map[i][j], i * IMG_WIDTH, j * IMG_HEIGHT);
 		j++;
 	}
 }
@@ -51,51 +68,84 @@ void	ft_render(t_data *window)
 	ft_put_image(window);
 }
 
-static void	ft_map_gen(t_data *window)
+/* static void	ft_map_gen(t_data *window)
 {
-	printf("l murt d mamt");
 	int i;
+	int j;
 	int	fd;
-	printf("l murt d mamt");
+	j = 0;
 	i = 0;
 	fd = open("map.ber", O_RDONLY);
-	window->map[i] = get_next_line(fd);
+	window->map[0]= get_next_line(fd);
 	while(window->map[i] != NULL)
-		window->map[i++] = get_next_line(fd);
-}
-void    ft_movement(int keycode, t_coord santa_position, t_data *window, t_img img) 
-{
-	if (keycode == 'w' || keycode == UP)
-		santa_position.y += 1;
-	else if (keycode == 's' || keycode == DOWN)
-		santa_position.y -= 1;
-	else if (keycode == 'a' || keycode == LEFT)
-		santa_position.x -= 1;
-	else if (keycode == 'd' || keycode == RIGHT)
-		santa_position.x += 1;
-	else if (keycode == ESC)
 	{
-		mlx_destroy_image (window->mlx, &img);
-		mlx_destroy_window (window->mlx, &window);
-		mlx_destroy_display(window->mlx);
-		exit (0);
+		window->map[i] = get_next_line(fd);
+		i++;
+		j++;
 	}
-	else
-		return ;
+} */
+
+char	**ft_map_gen(char **map)
+{
+	char	*buffer;
+	char	*line;
+	int		fd_open;
+
+	map = NULL;
+	fd_open = open("map.ber", O_RDONLY);
+	/*if (fd_open == -1)
+		ft_error("MAP DOES NOT EXIST", NULL);*/
+	buffer = malloc(1);
+	buffer[0] = 0;
+	if (!buffer)
+		return (NULL);
+	while (1)
+	{
+		line = get_next_line(fd_open);
+		if (!line)
+			break ;
+		buffer = ft_freejoin(buffer, line);
+	}
+	map = ft_split(buffer, '\n');
+	//ft_collectable_count(map, window);
+	free(buffer);
+	return (map);
 }
+
+// void    ft_movement(int keycode, t_coord santa_position, t_data *window, t_img img)
+// {
+// 	if (keycode == 'w' || keycode == UP)
+// 		santa_position.y += 1;
+// 	else if (keycode == 's' || keycode == DOWN)
+// 		santa_position.y -= 1;
+// 	else if (keycode == 'a' || keycode == LEFT)
+// 		santa_position.x -= 1;
+// 	else if (keycode == 'd' || keycode == RIGHT)
+// 		santa_position.x += 1;
+// 	else if (keycode == ESC)
+// 	{
+// 		mlx_destroy_image (window->mlx, &img);
+// 		mlx_destroy_window (window->mlx, &window);
+// 		mlx_destroy_display(window->mlx);
+// 		exit (0);
+// 	}
+// 	else
+// 		return ;
+// }
 
 int	main(void)
 {
-	printf("diobestia\n");
 	t_data	prova;
 	prova.present = 5;
-	printf("diobestia\n");
 	prova.mlx = mlx_init();
-	printf("sfhgksgfsk\n");
+	if (!prova.mlx)
+		return (free(prova.mlx), 1);
 	prova.window_ptr = mlx_new_window(prova.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Prova");
-	printf("dio cane\n");
-	ft_map_gen(&prova);
-	printf("puttana la madonna\n");
+	printf("ffffffffffffffff\n");
+	printf("%p", &prova);
+	printf("%p", &prova);
+	printf("ssssssssssssssss\n");
 	ft_render(&prova);
-	printf("puttana la madonna\n");
+	printf("dddddddddddddddddd\n");
 }
+
