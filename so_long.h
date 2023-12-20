@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pdi-pint <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 18:29:55 by pdi-pint          #+#    #+#             */
-/*   Updated: 2023/12/19 18:29:58 by pdi-pint         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -22,6 +10,7 @@
 # define WINDOW_HEIGHT 600
 # define IMG_WIDTH 32
 # define IMG_HEIGHT 32
+# define ESC 65307
 
 
 typedef struct s_coord
@@ -50,4 +39,3 @@ typedef struct s_data
 }                   t_data;
 
 #endif
-
