@@ -112,26 +112,26 @@ char	**ft_map_gen(char **map)
 	return (map);
 }
 
-// void    ft_movement(int keycode, t_coord santa_position, t_data *window, t_img img)
-// {
-// 	if (keycode == 'w' || keycode == UP)
-// 		santa_position.y += 1;
-// 	else if (keycode == 's' || keycode == DOWN)
-// 		santa_position.y -= 1;
-// 	else if (keycode == 'a' || keycode == LEFT)
-// 		santa_position.x -= 1;
-// 	else if (keycode == 'd' || keycode == RIGHT)
-// 		santa_position.x += 1;
-// 	else if (keycode == ESC)
-// 	{
-// 		mlx_destroy_image (window->mlx, &img);
-// 		mlx_destroy_window (window->mlx, &window);
-// 		mlx_destroy_display(window->mlx);
-// 		exit (0);
-// 	}
-// 	else
-// 		return ;
-// }
+void    ft_movement(int keycode, t_coord santa_position, t_data *window, t_img img)
+{
+	if (keycode == 'w' || keycode == UP)
+		santa_position.y += 1;
+	else if (keycode == 's' || keycode == DOWN)
+		santa_position.y -= 1;
+	else if (keycode == 'a' || keycode == LEFT)
+		santa_position.x -= 1;
+	else if (keycode == 'd' || keycode == RIGHT)
+		santa_position.x += 1;
+	else if (keycode == ESC)
+	{
+		mlx_destroy_image (window->mlx, &img);
+		mlx_destroy_window (window->mlx, &window);
+		mlx_destroy_display(window->mlx);
+		exit (0);
+	}
+	else
+		return ;
+}
 
 int	main(void)
 {
