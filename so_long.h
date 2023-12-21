@@ -41,7 +41,7 @@ typedef struct s_data
     t_img	img;
     char    **map;
     int     present;
-    t_coord santa_position;
+    t_coord santa_pos;
 }                   t_data;
 
 #endif
