@@ -42,7 +42,8 @@ typedef struct s_data
     char    **map;
     int     present;
     t_coord santa_pos;
+    t_coord enemy_pos;
+    int     moves;
 }                   t_data;
 
 #endif
-
