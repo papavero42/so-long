@@ -15,7 +15,7 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): libft_comp mlx_comp get_next_line_comp comp
+$(NAME): libft_comp mlx_comp printf_comp get_next_line_comp comp
 
 libft_comp:
 	make -C libft/
@@ -27,7 +27,7 @@ get_next_line_comp:
 	make -C get_next_line/
 
 comp:
-	$(CC) $(CFLAGS) $(SRC) $(LIBFT) $(MINILIBX) $(GET_NEXT_LINE) $(LINKS_LINUX) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) $(LIBFT) $(MINILIBX) $(PRINTF) $(GET_NEXT_LINE) $(LINKS_LINUX) -o $(NAME)
 
 clean:
 	$(RM) $(OBJ)
